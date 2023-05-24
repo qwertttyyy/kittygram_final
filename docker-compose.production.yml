@@ -14,11 +14,11 @@ services:
   backend:
     image: qwertttyyy/kittygram_backend
     env_file: .env
+    depends_on:
+      - db
     volumes:
       - static:/static
       - media:/app/media
-    depends_on:
-      - db
   frontend:
     env_file: .env
     image: qwertttyyy/kittygram_frontend
