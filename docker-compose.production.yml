@@ -14,8 +14,6 @@ services:
   backend:
     image: qwertttyyy/kittygram_backend
     env_file: .env
-    depends_on:
-      - db
     volumes:
       - static:/backend_static
       - media:/app/media
@@ -26,10 +24,11 @@ services:
     volumes:
       - static:/frontend_static
   gateway:
-    image: qwertttyyy/kittygram_gateway
+    image: nginx:1.22.1
     env_file: .env
     ports:
       - 9000:80
     volumes:
       - static:/static
       - media:/media
+      - ./nginx/nginx.conf:/etc/nginx/templates/default.conf.template
